@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>reyanRestaurant.com — Futuristic Dining</title>
+  <meta name="description" content="reyanRestaurant.com — Futuristic fine dining. Order online, sign in with Google, view menu & reviews." />
+
+  <!-- ====== Styles (single-file for easy preview) ====== -->
+  <style>
+    /* RESET */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(58,0,255,0.12), transparent 8%),
+                  radial-gradient(900px 450px at 90% 90%, rgba(255,0,128,0.10), transparent 8%),
+                  linear-gradient(180deg,#030313 0%,#081226 45%,#06121b 100%);
+      color:#e6f0ff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+    }
+
+    /* Container */
+    .container{max-width:1100px;margin:0 auto}
+
+    /* Header / Nav */
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#7c4dff,#ff4da6);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px;box-shadow:0 6px 30px rgba(0,0,0,0.6)}
+    .brand h1{font-size:20px;letter-spacing:0.6px}
+    nav a{color:rgba(230,240,255,0.9);text-decoration:none;margin-left:20px;font-weight:600}
+
+    /* Glass card */
+    .glass{backdrop-filter: blur(8px) saturate(130%);background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.06);box-shadow:0 10px 40px rgba(2,6,23,0.6);border-radius:14px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:26px;padding:28px;border-radius:14px;overflow:hidden}
+    .hero-left{padding:18px}
+    .headline{font-size:34px;margin-bottom:12px}
+    .sub{opacity:0.85;margin-bottom:18px}
+    .cta{display:flex;gap:12px}
+    .btn{padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,#6a4dff,#ff4da6);color:#fff;border:0;font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(106,77,255,0.18)}
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);color:#e7eeff}
+
+    .hero-right{padding:18px;display:flex;flex-direction:column;gap:12px}
+    .hero-pic{height:240px;border-radius:12px;background-size:cover;background-position:center;box-shadow:inset 0 -40px 80px rgba(0,0,0,0.45)}
+
+    /* Menu grid */
+    .menu{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:22px}
+    .dish{display:flex;gap:12px;padding:12px;border-radius:12px;align-items:center}
+    .dish-img{width:92px;height:72px;border-radius:8px;background-size:cover;background-position:center;flex-shrink:0}
+    .dish-info{flex:1}
+    .dish-info h3{font-size:16px;margin-bottom:6px}
+    .price{font-weight:800}
+
+    /* Reviews small */
+    .reviews{margin-top:18px}
+    .comment{font-size:12px;color:#cfe1ff;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);margin-bottom:8px}
+    .comment .meta{font-weight:700;font-size:12px;opacity:0.95}
+
+    /* Cart */
+    .cart{position:fixed;right:28px;bottom:28px;width:320px;z-index:120}
+    .cart-inner{padding:14px}
+    .cart h4{margin-bottom:10px}
+    .cart-item{display:flex;justify-content:space-between;margin-bottom:8px}
+
+    /* About & Contact */
+    section{margin-top:22px}
+    .about{display:flex;gap:18px;padding:16px}
+    .about img{width:160px;height:120px;border-radius:12px;object-fit:cover}
+    .contact{display:flex;flex-direction:column;gap:8px;padding:14px}
+
+    /* Footer */
+    footer{margin-top:26px;padding:18px;text-align:center;opacity:0.85}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .menu{grid-template-columns:1fr}
+      .cart{width:92%;left:4%;right:4%;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">R</div>
+        <div>
+          <h1>reyanRestaurant.com</h1>
+          <div style="font-size:12px;opacity:0.8">Futuristic Fine Dining • Est. 2025</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <!-- Google Sign-in button placeholder -->
+        <span id="g-sign" style="margin-left:12px"></span>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="glass hero" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <div class="headline" id="hero-title">Taste the Future — Dine at reyanRestaurant</div>
+        <div class="sub">Sustainable, artful plates. Neon ambiance. Carefully sourced ingredients and bold flavor profiles — priced for a premium experience.</div>
+        <div class="cta">
+          <button class="btn" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Explore Menu</button>
+          <button class="btn ghost" onclick="openCart()">View Order</button>
+        </div>
+
+        <div class="menu" id="menu" style="margin-top:20px">
+          <!-- Dish 1 -->
+          <article class="dish glass">
+            <div class="dish-img" style="background-image:url('https://images.unsplash.com/photo-1604908177522-0a9ea9b5f2bb?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=94e6b1c1f6a3f7f5b6c4f2fa1f3b9a1a');"></div>
+            <div class="dish-info">
+              <h3>Neon Spice Lobster</h3>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="opacity:0.9">Slow-roasted lobster with spicy citrus glaze</div>
+                <div class="price">$42</div>
+              </div>
+            </div>
+            <button class="btn" onclick="addToCart('Neon Spice Lobster',42)">Order</button>
+          </article>
+
+          <!-- Dish 2 -->
+          <article class="dish glass">
+            <div class="dish-img" style="background-image:url('https://images.unsplash.com/photo-1543353071-087092ec393a?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=5f7c4a8d4f9132f2bb9b1b8d8b1c2a1b');"></div>
+            <div class="dish-info">
+              <h3>Galactic Ramen</h3>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="opacity:0.9">Handmade noodles, umami broth, smoked egg</div>
+                <div class="price">$18</div>
+              </div>
+            </div>
+            <button class="btn" onclick="addToCart('Galactic Ramen',18)">Order</button>
+          </article>
+
+          <!-- Dish 3 -->
+          <article class="dish glass">
+            <div class="dish-img" style="background-image:url('https://images.unsplash.com/photo-1604908177523-9a9ea9b5f2aa?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=b7d2a88e3c4e4f5a6a7c6f1d2b3f9c4e');"></div>
+            <div class="dish-info">
+              <h3>Stellar Salad</h3>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="opacity:0.9">Microgreens, fermented dressing, toasted seeds</div>
+                <div class="price">$12</div>
+              </div>
+            </div>
+            <button class="btn" onclick="addToCart('Stellar Salad',12)">Order</button>
+          </article>
+
+          <!-- Dish 4 -->
+          <article class="dish glass">
+            <div class="dish-img" style="background-image:url('https://images.unsplash.com/photo-1543779509-8b4b6203b6b7?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=f4a2b3c4a5d6e7f8b9c0d1e2f3a4b5c6');"></div>
+            <div class="dish-info">
+              <h3>Midnight Chocolate Orb</h3>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="opacity:0.9">Molten chocolate, freeze-dried berries</div>
+                <div class="price">$14</div>
+              </div>
+            </div>
+            <button class="btn" onclick="addToCart('Midnight Chocolate Orb',14)">Order</button>
+          </article>
+        </div>
+
+        <!-- Reviews small -->
+        <div class="reviews">
+          <div style="font-weight:800;margin-bottom:8px">What diners say</div>
+          <div class="comment">
+            <div class="meta">— Amina K. (Addis Ababa)</div>
+            <div>Incredible plating and bold flavors. The neon lobster was unforgettable.</div>
+          </div>
+          <div class="comment">
+            <div class="meta">— John P. (NYC)</div>
+            <div>Ambience is futuristic and intimate. Service was spot-on.</div>
+          </div>
+          <div class="comment">
+            <div class="meta">— Sara L.</div>
+            <div>Perfect for dates — small plates are great for sharing.</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div class="glass hero-pic" style="background-image:url('https://images.unsplash.com/photo-1541542684-0c5a6a4c0e4c?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=9e3a7c8a6b5c4d2e1f0a9b8c7d6e5f4a');"></div>
+
+        <div class="glass" style="padding:14px">
+          <div style="font-weight:800;margin-bottom:8px">Reserve a table</div>
+          <div style="font-size:13px;opacity:0.9;margin-bottom:10px">We offer chef's tasting menus and private dining. Perfect for celebrations.</div>
+          <button class="btn" onclick="alert('To reserve: email kedirayub23@gmail.com with your date and party size')">Email to Reserve</button>
+        </div>
+
+        <div class="glass" style="padding:12px">
+          <div style="font-weight:700">Specials</div>
+          <div style="opacity:0.9;font-size:13px;margin-top:8px">Tonight: Saffron-pearled rice with charred vegetables + complimentary amuse-bouche.</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="glass about" aria-labelledby="about-title">
+      <img src="https://images.unsplash.com/photo-1523986371872-9d3ba2e2f642?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=4a1b2c3d5e6f7a8b9c0d1e2f3a4b5c6d" alt="Interior"/>
+      <div>
+        <h2 id="about-title">About Reyan Restaurant</h2>
+        <p style="margin-top:8px;opacity:0.95">reyanRestaurant is a futuristic fine-dining concept blending modern gastronomy with warm Ethiopian hospitality. We source seasonal produce and highlight bold, harmonious flavors with a focus on sustainability. Our design combines neon accents with tactile materials and soft lighting to create an immersive dining experience.</p>
+        <ul style="margin-top:10px;opacity:0.9">
+          <li>Chef-driven tasting menus</li>
+          <li>Locally sourced ingredients</li>
+          <li>Private dining & events</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="glass contact">
+      <h2>Contact & Location</h2>
+      <div>Contact email: <strong>kedirayub23@gmail.com</strong></div>
+      <div>Phone (for reservations only): <strong>+251 097 831 3437</strong></div>
+      <div style="margin-top:8px;opacity:0.9">Location: <strong>Addis Ababa, Ethiopia</strong> — exact address available on request.</div>
+      <div style="margin-top:12px">
+        <button class="btn" onclick="window.location.href='mailto:kedirayub23@gmail.com?subject=Reservation%20request'">Email Owner</button>
+      </div>
+    </section>
+
+    <footer class="glass" style="padding:12px;margin-top:18px">
+      <div style="opacity:0.9">© 2025 reyanRestaurant.com — Crafted with care. Website style tier: $5,000 concept build (front-end ready)</div>
+    </footer>
+
+  </div>
+
+  <!-- Cart UI -->
+  <div class="cart glass" id="cart" style="display:none">
+    <div class="cart-inner">
+      <h4>Your Order</h4>
+      <div id="cart-items"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+        <div style="font-weight:700">Total</div>
+        <div id="cart-total" style="font-weight:800">$0</div>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <button class="btn" onclick="checkout()">Checkout</button>
+        <button class="btn ghost" onclick="closeCart()">Continue Browsing</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== Scripts ====== -->
+  <script>
+    // ---- Cart logic ----
+    const cart = [];
+    function addToCart(name,price){
+      const item = cart.find(i=>i.name===name);
+      if(item) item.qty += 1; else cart.push({name,price,qty:1});
+      showCartBubble();
+      openCart();
+      renderCart();
+    }
+    function renderCart(){
+      const container = document.getElementById('cart-items');
+      container.innerHTML = '';
+      let total = 0;
+      cart.forEach(i=>{
+        total += i.price * i.qty;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `<div>${i.qty} x ${i.name}</div><div>$${(i.price*i.qty).toFixed(2)}</div>`;
+        container.appendChild(div);
+      });
+      document.getElementById('cart-total').innerText = '$' + total.toFixed(2);
+    }
+    function openCart(){document.getElementById('cart').style.display='block';renderCart();}
+    function closeCart(){document.getElementById('cart').style.display='none'}
+    function checkout(){
+      if(cart.length===0){alert('Your order is empty — add something first.');return}
+      // In a real site you'd send the order to your server here. We'll open an email draft.
+      const subject = encodeURIComponent('New order from reyanRestaurant.com');
+      const lines = cart.map(i=>`${i.qty} x ${i.name} — $${(i.price*i.qty).toFixed(2)}`);
+      const body = encodeURIComponent('Order details:\n' + lines.join('\n') + '\n\nPlease contact me to confirm.');
+      window.location.href = `mailto:kedirayub23@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    function showCartBubble(){
+      // small visual feedback — optional
+      document.querySelector('.logo').style.transform='scale(1.06)';
+      setTimeout(()=>document.querySelector('.logo').style.transform='scale(1)',220);
+    }
+
+    // ---- Google Sign-In (Client-side only) ----
+    // NOTE: Replace 'YOUR_GOOGLE_CLIENT_ID' with your actual OAuth 2.0 Client ID from Google Cloud Console.
+    // This implementation uses Google's new Identity Services button. When you have a client ID, replace below and it will enable sign-in.
+
+    function handleCredentialResponse(response){
+      // decode JWT to extract name and picture (simple client-side decode)
+      try{
+        const base64Url = response.credential.split('.')[1];
+        const base64 = base64Url.replace(/-/g,'+').replace(/_/g,'/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c){
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        const data = JSON.parse(jsonPayload);
+        showUser(data);
+      }catch(e){console.error('Failed to parse token', e)}
+    }
+
+    function showUser(profile){
+      const span = document.getElementById('g-sign');
+      span.innerHTML = `<img src="${profile.picture||''}" alt="user" style="width:28px;height:28px;border-radius:50%;vertical-align:middle;margin-right:8px;"> <strong style="font-size:13px">${profile.name||profile.email}</strong> <button onclick="signOut()" class="ghost btn" style="padding:6px 8px;margin-left:10px">Sign out</button>`;
+    }
+    function signOut(){
+      // reset UI
+      const span = document.getElementById('g-sign');
+      span.innerHTML = '';
+      renderGButton();
+    }
+
+    function renderGButton(){
+      const container = document.getElementById('g-sign');
+      // If you want to enable real sign-in, create OAuth client ID then replace CLIENT_ID below.
+      const CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID';
+      if(CLIENT_ID === 'YOUR_GOOGLE_CLIENT_ID'){
+        container.innerHTML = `<button class="btn" onclick="alert('To enable Google Sign-In, replace YOUR_GOOGLE_CLIENT_ID in the code with your OAuth client ID from Google Cloud. No phone will be requested.')">Sign in with Google</button>`;
+        return;
+      }
+      // Load Google's Identity library (dynamic)
+      const script = document.createElement('script');
+      script.src = 'https://accounts.google.com/gsi/client';
+      script.onload = ()=>{
+        google.accounts.id.initialize({
+          client_id: CLIENT_ID,
+          callback: handleCredentialResponse,
+          auto_select: false,
+          ux_mode: 'popup'
+        });
+        google.accounts.id.renderButton(container, {theme:'filled_blue', size:'medium', type:'standard', text:'signin_with'});
+      };
+      document.head.appendChild(script);
+    }
+
+    // Init
+    renderGButton();
+
+    // small accessibility: smooth-scroll for nav anchors
+    document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click', e=>{
+      e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+    }));
+  </script>
+</body>
+</html>
